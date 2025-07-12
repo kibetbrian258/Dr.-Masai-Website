@@ -1,0 +1,139 @@
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+}
+
+.news-item {
+  padding: 40px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--secondary-gradient);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+  }
+}
+
+.news-date {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.news-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+}
+
+.news-excerpt {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+// Enhanced hover effects
+.news-item:hover {
+  .news-title {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+  }
+
+  .news-date {
+    transform: translateX(-5px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  &::after {
+    transform: scale(1.2);
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+}
+
+// Animation classes
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .news-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  .news-item {
+    padding: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .news-item {
+    padding: 30px;
+
+    &::after {
+      width: 35px;
+      height: 35px;
+      top: 15px;
+      right: 15px;
+    }
+  }
+
+  .news-date {
+    padding: 8px 16px;
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+
+  .news-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .news-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
